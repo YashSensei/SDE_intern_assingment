@@ -1,0 +1,24 @@
+# Database connectivity
+psycopg2-binary==2.9.9
+
+# Data manipulation
+pandas==2.1.4
+numpy==1.26.2
+
+# Google Sheets API
+google-api-python-client==2.108.0
+google-auth-httplib2==0.2.0
+google-auth-oauthlib==1.2.0
+
+# Environment management
+python-dotenv==1.0.0
+
+# Data validation
+pydantic==2.5.2
+
+# Logging
+colorlog==6.8.0
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0

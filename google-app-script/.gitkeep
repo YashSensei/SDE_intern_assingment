@@ -1,0 +1,3 @@
+# This file ensures the google-app-script/ directory is tracked by Git
+# Google App Script files will be added here:
+# - auto_register.gs
