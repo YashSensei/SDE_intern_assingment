@@ -20,6 +20,12 @@ from googleapiclient.discovery import build
 # Load environment variables
 load_dotenv()
 
+# Import shared configuration (handle both module and direct execution)
+try:
+    from etl.config import DEPARTMENT_MAPPING, STATUS_MAPPING
+except ModuleNotFoundError:
+    from config import DEPARTMENT_MAPPING, STATUS_MAPPING
+
 # ============================================
 # LOGGING SETUP
 # ============================================
@@ -44,30 +50,6 @@ def setup_logging():
     return logging.getLogger(__name__), log_file
 
 logger, log_file = setup_logging()
-
-# ============================================
-# CONFIGURATION
-# ============================================
-
-DEPARTMENT_MAPPING = {
-    'cs': 'Computer Science',
-    'compsci': 'Computer Science',
-    'computer science': 'Computer Science',
-    'math': 'Mathematics',
-    'mathematics': 'Mathematics',
-    'physics': 'Physics',
-    'business': 'Business Administration',
-    'business administration': 'Business Administration',
-    'ee': 'Electrical Engineering',
-    'electrical engineering': 'Electrical Engineering'
-}
-
-STATUS_MAPPING = {
-    'active': 'active',
-    'inactive': 'inactive',
-    'graduated': 'graduated',
-    'suspended': 'suspended'
-}
 
 # ============================================
 # EXTRACT PHASE

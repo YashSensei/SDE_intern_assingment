@@ -62,3 +62,10 @@ LOG_CONFIG = {
     'log_format': '%(asctime)s - %(levelname)s - %(message)s',
     'date_format': '%Y-%m-%d %H:%M:%S'
 }
+
+# API Configuration
+API_CONFIG = {
+    'port': int(os.getenv('API_PORT', 5000)),
+    'debug': os.getenv('DEBUG', 'False').lower() in ('true', '1', 'yes'),
+    'host': '0.0.0.0'
+}

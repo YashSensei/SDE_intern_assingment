@@ -14,22 +14,14 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Import shared configuration (handle both module and direct execution)
+try:
+    from etl.config import DEPARTMENT_MAPPING, STATUS_MAPPING, API_CONFIG
+except ModuleNotFoundError:
+    from config import DEPARTMENT_MAPPING, STATUS_MAPPING, API_CONFIG
+
 app = Flask(__name__)
 CORS(app)  # Enable CORS for Google App Script
-
-# Department mapping
-DEPARTMENT_MAPPING = {
-    'cs': 'Computer Science',
-    'compsci': 'Computer Science',
-    'computer science': 'Computer Science',
-    'math': 'Mathematics',
-    'mathematics': 'Mathematics',
-    'physics': 'Physics',
-    'business': 'Business Administration',
-    'business administration': 'Business Administration',
-    'ee': 'Electrical Engineering',
-    'electrical engineering': 'Electrical Engineering'
-}
 
 def get_db_connection():
     """Create database connection"""
@@ -104,8 +96,7 @@ def register_student():
             return jsonify({'success': False, 'message': 'Year level must be 1-4'}), 400
 
         # Validate status
-        valid_statuses = ['active', 'inactive', 'graduated', 'suspended']
-        if status not in valid_statuses:
+        if status not in STATUS_MAPPING:
             status = 'active'
 
         conn = get_db_connection()
@@ -275,5 +266,8 @@ def get_student(student_id):
         return jsonify({'success': False, 'message': str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.getenv('API_PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(
+        host=API_CONFIG['host'],
+        port=API_CONFIG['port'],
+        debug=API_CONFIG['debug']
+    )
