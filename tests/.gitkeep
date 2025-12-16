@@ -1,4 +1,0 @@
-# This file ensures the tests/ directory is tracked by Git
-# Test files will be added here:
-# - test_etl.py
-# - test_database.py

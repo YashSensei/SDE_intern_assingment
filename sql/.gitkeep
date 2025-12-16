@@ -1,7 +1,0 @@
-# This file ensures the sql/ directory is tracked by Git
-# SQL scripts will be added here:
-# - schema.sql
-# - seed.sql
-# - queries.sql
-# - views.sql
-# - procedures.sql
